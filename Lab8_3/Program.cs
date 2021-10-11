@@ -11,8 +11,8 @@ namespace Lab8_3
     {
         static void Main(string[] args)
         {
-            int symbol = 0; 
-            int line = 0; 
+            int symbol = 0;
+            int line = 0;
             long word = 0;
             string path = "Text.txt";
             string text;
@@ -20,19 +20,22 @@ namespace Lab8_3
             using (StreamReader sr = new StreamReader(path))
             {
                 text = sr.ReadToEnd();
-                symbol = text.Length;
-
+            }
+            using (StreamReader sr = new StreamReader(path))
+            {
                 while ((sr.ReadLine()) != null)
                 {
                     line++;
                 }
-                words = text.Split('\n', ' ');
-                foreach (string s in words)
-                {
-                    word++;
-                }
             }
-            Console.WriteLine("Количество символов в файле: {0};",symbol);
+            symbol = text.Length - (2 * (line - 1));
+            //symbol = text.Length; //- На случай, если нужно было считать символы перехода на новую строку
+            words = text.Split('\n', ' ');
+            foreach (string s in words)
+            {
+                word++;
+            }
+            Console.WriteLine("Количество символов в файле: {0};", symbol);
             Console.WriteLine("Количество слов в файле: {0};", word);
             Console.WriteLine("Количество строк в файле: {0};", line);
             Console.ReadKey();
